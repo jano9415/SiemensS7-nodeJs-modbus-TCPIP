@@ -18,7 +18,7 @@ The value in 40003 register: 6
 
 The value in 40004 register: 11
 
-![Image9](https://github.com/user-attachments/assets/74f93730-7a6e-41c7-be2e-193894e7a57a)
+![Image9](https://github.com/user-attachments/assets/521ee006-989c-4b3a-9c2c-cf9bf0d6c759)
 
 Client reads from 40005 and 40006 holding register.
 
