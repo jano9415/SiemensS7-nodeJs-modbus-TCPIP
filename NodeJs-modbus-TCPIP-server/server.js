@@ -9,23 +9,27 @@ server.on('connection', (client) => {
     console.log('New connection')
 })
 
+//Összes regiszter tartalmának kiírása
+//A kliens adatot ír ezekbe a holding regiszterekbe: 40001,
+//40002, 40003, 40004, ezért ezeknek a regisztereknek
+// a tartalmát fogja kiírni
 server.on('postWriteMultipleRegisters', (value) => {
     console.log(value._body)
 })
 
-let i = 0;
+//A kliens kiolvassa ezeket a holding regisztereket: 40005 és 40006
+//40005 tartalma: 24
+//40006 tartalma: 108
+//A 40001-es regiszter = 0
+//A 40002-es regiszter = 2
+//A 40003-as regiszter = 4
+//A 40004-es regiszter = 6
+//A 40005-ös regiszter = 8
+//A 40006-os regiszter = 10
 
-//40005-ös regiszterbe írom a 8-as számot
-//server.holding.writeUInt16BE(13,8)
-//40006-os regiszterbe írom a 102-es számot
-//server.holding.writeUInt16BE(102,10)
-
-//Függvény, ami lefut minden másodpercben
-setInterval(() => {
-    i++;
-    server.holding.writeUInt16BE(i,8) //40001 + 8/2 = 40005, 40005-ös regiszterbe írom az i. számot
-    server.holding.writeUInt16BE(i%3, 10) // 40006, 40006-os regiszterbe írom az i mod 3 számot
-    if(i >= 200) {i = 0}
-}, 1000);
+//24-es érték írása a 40005-ös holding regiszterbe
+server.holding.writeUInt16BE(24,8)
+//108-as érték írása a 40006-os holding regiszterbe
+server.holding.writeUInt16BE(108,10)
 
 netServer.listen(502)
